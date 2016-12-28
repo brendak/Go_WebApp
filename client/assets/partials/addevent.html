@@ -1,0 +1,87 @@
+<body ng-controller = "eventController as meep">
+
+  <div class="input-information">
+    <div class="first-box" >
+
+    <h2 id="addEventWord">Add Event</h2>
+    <div class="address-box">
+      <form class="event-box" ng-submit="meep.newEvent(meep.event)">
+        <p>
+          <label>Category</label> <select class="addressField" type="text" ng-model="meep.event.category">
+          <option>Arts</option>
+          <option>Entertainment</option>
+          <option>Food</option>
+          <option>Drinks</option>
+          <option>Classes</option>
+          <option>Outdoors</option>
+          <option>Social</option>
+          </select>
+          <label>Event Title</label> <input class="addressField" type='text' ng-model = "meep.event.title">
+          <label>Event Details</label> <input class="addressField" type="text" ng-model = "meep.event.detail">
+          <label>Event Date</label> <input class="addressField" type="date" ng-model ="meep.event.date">
+          <label>Address Street</label> <input class="addressField" type="text" ng-model = "meep.event.address.street"><br>
+          <label>Address City/State</label> <input class="addressField" type="text" ng-model = "meep.event.address.city"><br>
+          <label>Address Zip</label> <input class="addressField" type="text" ng-model = "meep.event.address.zip"><br>
+          <input type="hidden" ng-model ="meep.event.coordinates.lat">
+          <input type="hidden" ng-model ="meep.event.coordinates.long">
+          <input type="submit" value="Go Event">
+        </p>
+      </form>
+    </div>
+
+    <!-- <h2 id="addEventWord">Edit Event</h2> -->
+    <div class="address-boxE" ng-class="{'showMe': meep.editFlag}">
+      <form class="event-boxi" ng-submit="meep.editEvent( meep.edits._id, meep.event)" >
+        <p>
+          <label>Category</label> <input class="addressFieldE" type="text" ng-model="meep.event.category" placeholder="{{meep.edits.category}}" value= "{{meep.edits.category}}, hello">
+          <label>Event Title</label> <input class="addressFieldE" type='text' ng-model = "meep.event.title"  placeholder="{{meep.edits.title}}">
+          <label>Event Details</label> <input class="addressFieldE" type="text" ng-model = "meep.event.detail"  placeholder="{{meep.edits.detail}}">
+          <label>Event Date</label> <input class="addressFieldE" type="date" ng-model ="meep.event.date" placeholder="{{meep.edits.date | date: 'longDate'}}" >
+          <label>Address Street</label> <input class="addressFieldE" type="text" ng-model = "meep.event.address.street" placeholder="{{meep.edits.address.street}}"><br>
+          <label>Address City/State</label> <input class="addressFieldE" type="text" ng-model = "meep.event.address.city" placeholder="{{meep.edits.address.city}} "><br>
+          <label>Address Zip</label> <input class="addressField" type="text" ng-model = "meep.event.address.zip" placeholder="{{meep.edits.address.zip}}"><br>
+          <input type="hidden" ng-model ="meep.event.coordinates.lat">
+          <input type="hidden" ng-model ="meep.event.coordinates.long">
+          <input type="submit" value="edit Event">
+        </p>
+      </form>
+    </div>
+
+  </div>
+    <div class="table-data">
+      <table>
+        <thead>
+          <tr>
+            <th>Category</th>
+            <th>Title</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat ="eventi in meep.events | orderBy: 'date' " ng-mouseover = "meep.hoverIn(eventi)" ng-mouseleave="meep.hoverOut()" >
+            <td id="categoryRow">{{eventi.category}}</td>
+            <td id= "titleRow">{{eventi.title}}<a href = "" class="editButton" ng-class="{'showDetails': meep.displayFlag }" ng-click="meep.editShow(eventi)">edit</a> <button type="button" name="delete" class="deleteButton" ng-class="{'showDetails': meep.displayFlag }" ng-click="meep.deleteEvent(eventi._id)">del</button></td>
+            <td id= "dateRow">{{eventi.date | date: 'longDate'}} </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="details" ng-class="{'showDetails': meep.displayFlag }">
+        <p class = "popText">Title:<br> {{meep.showhidden.title}}</p>
+        <p class = "popText">Details:<br> {{meep.showhidden.detail}}</p>
+        <p class = "popText">Address:<br> {{meep.showhidden.address.street}}<br>{{meep.showhidden.address.city}}<br>{{meep.showhidden.address.zip}}</p>
+        <p class = "popText">Date:<br>{{meep.showhidden.date | date: "longDate"}}</p>
+      </div>
+  </div>
+
+    <div class="userInput" ng-class="{'showMe': meep.editFlag}">
+      <form ng-submit="meep.newAdmin(meep.admin)">
+        Name: <input type="text" ng-model="meep.admin.name"><br>
+        email: <input type="text" ng-model="meep.admin.email"><br>
+        password: <input type="text" ng-model = "meep.admin.password"><br>
+        <input type="submit" value="Enter Admin">
+      </form>
+    </div>
+
+  </div>
+</body>
