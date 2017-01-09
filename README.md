@@ -1,2 +1,5 @@
-# Go_WebApp
-Backend to create temp JSON data for GO App
+# become
+
+Angular.js/MongoDB/JQuery/APIs - IN WORKS
+
+Mentorship Platform for AngelHack Hackathon / Connecting Women in Tech
