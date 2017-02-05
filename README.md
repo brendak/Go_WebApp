@@ -1,4 +1,5 @@
-# GO
+# become
 
-Swift/CoreData/Angular.js/MongoDB/JQuery/Google APIs - IN WORKS
+Angular.js/MongoDB/JQuery/APIs - IN WORKS
 
+Mentorship Platform for AngelHack Hackathon / Connecting Women in Tech
